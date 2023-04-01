@@ -19,12 +19,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const {allTypes} = require("./src/Controllers/pokemonType.js")
+const {getTypes} = require("./src/Controllers/pokemonType.js")
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  allTypes(),
+  getTypes(),
   server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log('Escuchando al puerto 3001 rey!'); // eslint-disable-line no-console
   });
 });

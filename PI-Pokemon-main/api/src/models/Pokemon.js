@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
     defensa: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   })
 };

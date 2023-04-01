@@ -2,26 +2,26 @@ const {Type} = require ("../db.js")
 const axios = require('axios')
 
 
-const allTypes = async () => {
+const getTypes = async () => {
     try {
         const getTypes = await axios.get("https://pokeapi.co/api/v2/type");
-        const pokemonTypes = getTypes.data.result.map((type) => {
-            return {
-                nombre: type.nombre,
-            };
+        const pokemonType = getTypes.data.results.map((type) => {
+          return {
+            name: type.name,
+          };
         });
-        
-        const dtbase = pokemonTypes.forEach((el) => {
-            TypeError.findOrCreate ({
-                where: {
-                    name: el.name,
-                },
+        const dtbase = pokemonType.forEach((el) => {
+            Type.findOrCreate({
+              where: {
+                name: el.name,
+              },
             });
-        });
+          });
         return dtbase
-    } catch (error) {
-        console.log({error: "No hay tipos disponibles en la base de datos"})
-    }
-};
+        } catch (error) {
+          console.log({error: "Tipos de pokemones no disponibles en la base de datos"});
+        }
+      };
 
-module.exports = {allTypes};
+
+module.exports = {getTypes}
